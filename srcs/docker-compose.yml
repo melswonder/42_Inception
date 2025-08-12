@@ -1,0 +1,2 @@
+services: #Docker composeによって動作させるアプリの単位指定　今回はdbとwebの２つの要素で構成されている
+  db:
