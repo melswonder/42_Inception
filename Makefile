@@ -1,30 +1,30 @@
 NAME = inception
 COMPOSE_FILE = srcs/docker-compose.yml
-DATA_PATH = /home/hirwatan/data
+DATA_PATH = ./data
 
 all: build up
 
 build:
 	mkdir -p $(DATA_PATH)/mariadb
 	mkdir -p $(DATA_PATH)/wordpress
-	docker-compose -f $(COMPOSE_FILE) build
+	docker compose -f $(COMPOSE_FILE) build
 
 up:
-	docker-compose -f $(COMPOSE_FILE) up -d
+	docker compose -f $(COMPOSE_FILE) up -d
 
 down:
-	docker-compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) down
 
 stop:
-	docker-compose -f $(COMPOSE_FILE) stop
+	docker compose -f $(COMPOSE_FILE) stop
 
 start:
-	docker-compose -f $(COMPOSE_FILE) start
+	docker compose -f $(COMPOSE_FILE) start
 
 restart: down up
 
 logs:
-	docker-compose -f $(COMPOSE_FILE) logs -f
+	docker compose -f $(COMPOSE_FILE) logs -f
 
 clean: down
 	docker system prune -a -f
@@ -39,7 +39,7 @@ fclean: clean
 re: fclean all
 
 status:
-	docker-compose -f $(COMPOSE_FILE) ps
+	docker compose -f $(COMPOSE_FILE) ps
 
 exec-mariadb:
 	docker exec -it mariadb bash
