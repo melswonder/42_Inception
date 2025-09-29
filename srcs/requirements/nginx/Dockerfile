@@ -10,10 +10,10 @@ RUN mkdir -p /etc/nginx/ssl && \
     -out /etc/nginx/ssl/nginx.crt \
     -subj "/CN=hirwatan.42.fr"
 
-COPY ./conf/nginx.conf /etc/nginx/sites-available/default
-
 RUN mkdir -p /var/www/html && \
     chown -R www-data:www-data /var/www/html
+
+COPY ./conf/nginx.conf /etc/nginx/sites-available/default
 
 EXPOSE 443
 
