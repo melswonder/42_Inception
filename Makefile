@@ -1,6 +1,6 @@
 NAME = inception
 COMPOSE_FILE = srcs/docker-compose.yml
-DATA_PATH = ./data
+DATA_PATH = /home/mels/data
 
 all: build up
 
