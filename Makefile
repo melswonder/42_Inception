@@ -8,23 +8,30 @@ build:
 	mkdir -p $(DATA_PATH)/wordpress
 	docker compose -f $(COMPOSE_FILE) build
 
+# 構築 起動
 up:
 	docker compose -f $(COMPOSE_FILE) up -d
 
+# 停止 削除　ボリューム化してないものは消える
 down:
 	docker compose -f $(COMPOSE_FILE) down
 
+# 一時停止
 stop:
 	docker compose -f $(COMPOSE_FILE) stop
 
+# 再開
 start:
 	docker compose -f $(COMPOSE_FILE) start
 
+# 再起動
 restart: down up
 
+# 各コンテナの
 logs:
 	docker compose -f $(COMPOSE_FILE) logs -f
 
+#
 clean: down
 	docker system prune -a -f
 	docker volume prune -f
@@ -37,9 +44,15 @@ fclean: clean
 
 re: fclean all
 
+# 状態
 status:
 	docker compose -f $(COMPOSE_FILE) ps
 
+# イメージ
+images:
+	docker images
+
+# shellに入る
 exec-mariadb:
 	docker exec -it mariadb bash
 

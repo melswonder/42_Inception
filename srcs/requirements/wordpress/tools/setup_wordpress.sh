@@ -2,6 +2,10 @@
 
 set -e
 
+# Read passwords from secrets
+MYSQL_PASSWORD=$(cat /run/secrets/db_password)
+WORDPRESS_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password)
+
 cd /var/www/html
 
 # MariaDBが起動するまで待機（sleepを使わない方法）
