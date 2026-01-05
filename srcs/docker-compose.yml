@@ -3,6 +3,7 @@ version: '3.8'
 services:
   mariadb:
     container_name: mariadb
+    image: mariadb
     build: ./requirements/mariadb
     restart: unless-stopped
     networks:
@@ -19,6 +20,7 @@ services:
 
   wordpress:
     container_name: wordpress
+    image: wordpress
     build: ./requirements/wordpress
     restart: unless-stopped
     networks:
@@ -44,6 +46,7 @@ services:
 
   nginx:
     container_name: nginx
+    image: nginx
     build: ./requirements/nginx
     restart: unless-stopped
     networks:
@@ -67,10 +70,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/mels/data/mariadb
+      device: /home/hirwatan/data/mariadb
   wordpress_data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/mels/data/wordpress
+      device: /home/hirwatan/data/wordpress

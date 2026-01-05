@@ -1,5 +1,5 @@
 COMPOSE_FILE = srcs/docker-compose.yml
-DATA_PATH = /home/mels/data
+DATA_PATH = /home/hirwatan/data
 
 all: build up
 
