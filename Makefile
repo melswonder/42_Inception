@@ -1,18 +1,20 @@
+include ./srcs/.env
+
 COMPOSE_FILE = srcs/docker-compose.yml
-DATA_PATH = /home/hirwatan/data
+HOST_DATA_DIR?=/home/hirwatan/data
 
 all: build up
 
 build:
-	mkdir -p $(DATA_PATH)/mariadb
-	mkdir -p $(DATA_PATH)/wordpress
+	mkdir -p $(HOST_DATA_DIR)/mariadb
+	mkdir -p $(HOST_DATA_DIR)/wordpress
 	docker compose -f $(COMPOSE_FILE) build
 
 # 構築 起動
 up:
 	docker compose -f $(COMPOSE_FILE) up -d
 
-# 停止 削除　ボリューム化してないものは消える
+# 停止　ボリューム化してないものは消える
 down:
 	docker compose -f $(COMPOSE_FILE) down
 
@@ -37,7 +39,7 @@ clean: down
 	docker volume prune -f
 
 fclean: clean
-	sudo rm -rf $(DATA_PATH)
+	sudo rm -rf $(HOST_DATA_DIR)
 	docker rmi -f $$(docker images -qa) 2>/dev/null || true
 	docker volume rm $$(docker volume ls -q) 2>/dev/null || true
 	docker network rm $$(docker network ls -q) 2>/dev/null || true
